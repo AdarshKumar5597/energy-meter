@@ -9,3 +9,4 @@ data class DataModel(
     val power_factor: String?,
     val voltage: String
 )
+

@@ -9,7 +9,11 @@ class EnergyMeterService @Inject constructor(private val energyMeterApi: EnergyM
     suspend fun getEnergyMeterDetails() : List<DataModel> {
         return withContext(Dispatchers.IO){
             val emDetails = energyMeterApi.getEMDetails()
-            emDetails.body()?: emptyList()
+            if (emDetails.isSuccessful){
+                emDetails.body()!!.data
+            }else{
+                emptyList()
+            }
         }
     }
 }
